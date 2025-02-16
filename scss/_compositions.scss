@@ -1,0 +1,104 @@
+@use 'utilities' as u;
+@use "variables" as v;
+
+@mixin display-flex($justify: space-between, $flexDirection: row) {
+    display: flex;
+    justify-content: $justify;
+    align-items: center;
+    flex-direction: $flexDirection;
+}
+
+@mixin display-grid($columns) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+}
+
+@mixin mobile {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin responsive-grid($columns, $rows: null) {
+    @include display-grid($columns);
+
+    @if $rows {
+        grid-template-rows: repeat($rows, 1fr);
+    }
+
+    @include mobile {
+        @include display-flex(space-between, column);
+    }
+}
+
+@mixin responsive-image($display-desktop, $display-mobile) {
+    display: $display-desktop;
+
+    @include mobile {
+        display: $display-mobile;
+    }
+}
+
+nav {
+    ul {
+        @include display-flex;
+    }
+}
+
+.main__creations__cards {
+    @include responsive-grid(4);
+    gap: 2rem;
+}
+
+.main__article {
+    @include responsive-grid(10, 3);
+}
+
+.main__article__image {
+    grid-column: 1 / 5;
+    grid-row: 1 / 4;
+}
+
+.main__article__content {
+    grid-column: 5 / 10;
+    grid-row: 2 / 4;
+    background-color: v.$white;
+    @include u.padding_all(5rem);
+
+    @include mobile {
+        @include u.padding_all(2rem);
+    }
+}
+
+.header__content {
+    @include display-flex;
+}
+
+.header__heading {
+    @include display-grid(2);
+    @include u.margin_y(5rem);
+
+    @include mobile {
+        @include display-flex;
+    }
+}
+
+.footer__socials {
+    @include display-flex;
+}
+
+.main__creations {
+    @include mobile {
+        @include display-flex(center, column);
+    }
+}
+
+.footer__nav {
+    color: v.$white;
+
+    ul {
+        @include mobile {
+            @include display-flex(center, column);
+        }
+    }
+}

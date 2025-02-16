@@ -1,0 +1,61 @@
+@use 'variables' as v;
+@use "utilities" as u;
+@use 'compositions' as c;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: v.$font-size;
+    font-family: v.$font-family-alata;
+    font-weight: v.$font-weight-normal;
+    color: v.$very-dark-gray;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include u.font-family-josefin;
+}
+
+header {
+    @include u.common-section-styles(5rem, '../images/desktop/image-hero.jpg');
+    color: v.$white;
+
+    @include c.mobile {
+        @include u.common-section-styles(2rem, '../images/mobile/image-hero.jpg');
+    }
+}
+
+main {
+    @include u.common-section-styles(5rem);
+
+    @include c.mobile {
+        @include u.common-section-styles(2rem);
+    }
+}
+
+footer {
+    @include u.common-section-styles(5rem);
+    background-color: v.$black;
+    @include c.display-flex;
+
+    @include c.mobile {
+        @include u.common-section-styles(2rem);
+        @include c.display-flex(center, column);
+    }
+}
+
+button {
+    all: unset;
+}
+
+p {
+    line-height: 1.5;
+}

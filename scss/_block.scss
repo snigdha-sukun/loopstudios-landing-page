@@ -1,0 +1,172 @@
+@use 'compositions' as c;
+@use 'utilities' as u;
+@use "variables" as v;
+
+li {
+    @include u.hoverable_elements;
+    list-style: none;
+}
+
+h1 {
+    font-size: 4.5rem;
+    @include u.border(0.2rem, v.$white);
+    @include u.padding_all(1rem);
+
+    @include c.mobile {
+        font-size: 2.5rem;
+    }
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: v.$black;
+
+    @include c.mobile {
+        font-size: 2rem;
+    }
+}
+
+h3 {
+    font-size: 2rem;
+    text-align: center;
+
+    @include c.mobile {
+        font-size: 1.5rem;
+    }
+}
+
+button {
+    @include u.font-family-josefin;
+    cursor: pointer;
+    color: v.$black;
+    padding: 0.5rem 1rem;
+    @include u.border(0.1rem, v.$black);
+}
+
+button:hover,
+button:focus {
+    background-color: v.$black;
+    color: v.$white;
+}
+
+.footer__socials__icons {
+    @include u.hoverable_elements;
+}
+
+.creation__card {
+    position: relative;
+    text-align: center;
+    color: v.$white;
+    cursor: pointer;
+}
+
+.creation__card img {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.creation__card:hover img,
+.creation__card:focus img {
+    opacity: 0.3;
+}
+
+.creation__card:hover .card__text,
+.creation__card:focus .card__text {
+    color: v.$black;
+}
+
+.card__text {
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.creations__header {
+    @include c.display-flex;
+    @include u.padding_y(2rem);
+}
+
+.footer__copyright {
+    color: v.$dark-gray;
+}
+
+.main__article__text {
+    @include u.padding_y(2rem);
+}
+
+.mobile_menu {
+    display: none;
+
+    @include c.mobile {
+        display: block;
+    }
+}
+
+.desktop__img {
+    @include c.responsive-image(block, none);
+}
+
+.mobile__img {
+    @include c.responsive-image(none, block);
+    width: 100%;
+    @include u.margin_top(3rem);
+}
+
+.desktop__btn {
+    display: block;
+
+    @include c.mobile {
+        display: none;
+    }
+}
+
+.mobile__btn {
+    display: none;
+
+    @include c.mobile {
+        display: block;
+        @include u.margin_y(2rem);
+    }
+}
+
+.footer__nav,
+.footer__copyright {
+    @include u.padding_y(1rem);
+}
+
+.header__nav {
+    @include c.mobile {
+        display: none;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: v.$black;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+        @include u.padding_all(2rem);
+        @include u.font-family-josefin;
+        font-size: 1.5rem;
+
+        ul {
+            display: block;
+            @include u.margin_top(8rem);
+
+            li {
+                @include u.margin_y(1rem);
+            }
+        }
+    }
+}
+
+.nav__header {
+    display: none;
+
+    @include c.mobile {
+        @include c.display-flex(space-between);
+    }
+}

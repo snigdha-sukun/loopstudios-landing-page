@@ -1,0 +1,51 @@
+@use "variables" as v;
+
+@mixin padding_all($padding) {
+    padding: $padding;
+}
+
+@mixin padding_y($padding) {
+    padding-top: $padding;
+    padding-bottom: $padding;
+}
+
+@mixin margin_y($margin) {
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+@mixin margin_top($margin) {
+    margin-top: $margin;
+}
+
+@mixin border($width, $color) {
+    border: $width solid $color;
+}
+
+@mixin hoverable_elements {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    margin-right: 1rem;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+        border-bottom: 0.2rem solid v.$white;
+    }
+}
+
+@mixin font-family-josefin {
+    font-family: v.$font-family-josefin;
+    font-weight: v.$font-weight-light;
+    text-transform: uppercase;
+}
+
+@mixin common-section-styles($padding, $background: null) {
+    @include padding_all($padding);
+
+    @if $background {
+        background-image: url($background);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
